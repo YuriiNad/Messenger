@@ -15,6 +15,7 @@ import { ChatComponent } from './components/chat/chat.component';
 import { ChatListComponent } from './components/chat-list/chat-list.component';
 import { UserComponent } from './components/user/user.component';
 import { FilterPipe } from './pipes/filter.pipe';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
 	declarations: [
@@ -32,7 +33,8 @@ import { FilterPipe } from './pipes/filter.pipe';
 		AppRoutingModule,
 		AngularFireModule.initializeApp(environment.firebase),
 		AngularFirestoreModule,
-		AngularFireDatabaseModule
+		AngularFireDatabaseModule,
+		BrowserAnimationsModule
 	],
 	providers: [],
 	bootstrap: [AppComponent]
