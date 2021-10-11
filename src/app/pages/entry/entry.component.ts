@@ -14,10 +14,10 @@ export class EntryComponent implements OnInit {
 	) { }
 
 	ngOnInit(): void {
+
 	}
 	signIn() {
 		this._auth.signIn()
-
 	}
 	signOut() {
 		this._auth.signOut();
