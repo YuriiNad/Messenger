@@ -8,10 +8,24 @@ import { environment } from '../environments/environment';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { EntryComponent } from './pages/entry/entry.component';
+import { MessengerComponent } from './pages/messenger/messenger.component';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
+import { ChatComponent } from './components/chat/chat.component';
+import { ChatListComponent } from './components/chat-list/chat-list.component';
+import { UserComponent } from './components/user/user.component';
+import { FilterPipe } from './pipes/filter.pipe';
 
 @NgModule({
 	declarations: [
-		AppComponent
+		AppComponent,
+		EntryComponent,
+		MessengerComponent,
+		NotFoundComponent,
+		ChatComponent,
+		ChatListComponent,
+		UserComponent,
+		FilterPipe
 	],
 	imports: [
 		BrowserModule,
