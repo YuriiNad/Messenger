@@ -1,1 +1,3 @@
 <p>entry works!</p>
+<button (click)="signIn()" *ngIf="(_auth.afAuth.authState | async) === null">Log in with Google</button>
+<button (click)="signOut()" *ngIf="(_auth.afAuth.authState | async)">Log out</button>
