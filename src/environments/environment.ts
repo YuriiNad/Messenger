@@ -10,10 +10,11 @@ export const environment = {
 		projectId: "messenger-11c91",
 		storageBucket: "messenger-11c91.appspot.com",
 		messagingSenderId: "865229351098",
-		appId: "1:865229351098:web:e679562d4fb1286620fa83"
+		appId: "1:865229351098:web:e679562d4fb1286620fa83",
+		databaseURL: "https://messenger-11c91-default-rtdb.europe-west1.firebasedatabase.app"
 	}
 };
-
+//https://messenger-11c91-default-rtdb.europe-west1.firebasedatabase.app
 /*
  * For easier debugging in development mode, you can import the following file
  * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.
