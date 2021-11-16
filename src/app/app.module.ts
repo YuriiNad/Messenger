@@ -14,9 +14,14 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { ChatComponent } from './components/chat/chat.component';
 import { ChatListComponent } from './components/chat-list/chat-list.component';
 import { UserComponent } from './components/user/user.component';
-import { FilterPipe } from './pipes/filter.pipe';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { MessageComponent } from './components/message/message.component';
 
+import { MatCardModule } from '@angular/material/card';
+import { TickSignComponent } from './tick-sign/tick-sign.component';
+import { UserFilterPipe } from './shared/users-filter.pipe';
 @NgModule({
 	declarations: [
 		AppComponent,
@@ -26,7 +31,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 		ChatComponent,
 		ChatListComponent,
 		UserComponent,
-		FilterPipe
+		MessageComponent,
+		TickSignComponent,
+		UserFilterPipe
 	],
 	imports: [
 		BrowserModule,
@@ -34,7 +41,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 		AngularFireModule.initializeApp(environment.firebase),
 		AngularFirestoreModule,
 		AngularFireDatabaseModule,
-		BrowserAnimationsModule
+		BrowserAnimationsModule,
+		FormsModule,
+		HttpClientModule,
+		MatCardModule,
 	],
 	providers: [],
 	bootstrap: [AppComponent]
