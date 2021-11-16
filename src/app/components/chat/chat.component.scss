@@ -1,0 +1,83 @@
+@import "src/theme/variables.scss";
+
+.chat-container {
+	max-width: 100%;
+	height: 100%;
+	.user-container {
+		display: block;
+		background-color: $primary-pale-gray;
+		
+		.static-user-card {
+			background-color: $primary-pale-gray;
+			padding-left: 1rem;
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			justify-content: flex-start;
+		};
+		.mat-card-header-static-user {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		
+			.static-user-header-image {
+				position: relative;
+				background-size: cover;
+			}
+		}
+	}
+
+	.messages-container {
+		background-color: $primary;
+		flex: 1;
+		overflow-y: auto;
+		app-message {
+			display: flex;
+			flex-direction: column;
+		}
+	}
+
+	.wraper-message-form {
+		width: 100%;
+		background-color: $primary-pale-gray;
+		border-top: 1px solid $primary-dark-gray;
+		display: block;
+		.message-form-container {
+			margin: 1.5rem 0;
+			position: relative;
+		
+			#message-inp {
+				padding: 10px 40px 10px 10px;
+			}
+			.send-message-btn {
+				width: fit-content;
+				position: absolute;
+				background-color: transparent;
+				align-items: center;
+				justify-content: center;
+				border: none;
+				cursor: pointer;
+				overflow: hidden;
+				top: calc(50% - 15.5px);
+				right: 20px;
+				z-index: 2;
+
+				img {
+					overflow: hidden;
+				}
+			}
+		}
+	}
+}
+
+// angular material
+.mat-card {
+	padding: 15px 5px 15px 15px;
+	border-bottom: 1px solid $primary-dark-gray;
+	border-radius: 0px;
+	box-shadow: none;
+}
+.mat-card-header .mat-card-title {
+	margin-bottom: 0px;
+}
+

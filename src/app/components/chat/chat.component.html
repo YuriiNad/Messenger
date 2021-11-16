@@ -1,1 +1,25 @@
-<p>chat works!</p>
+<div class="chat-container flex-col">
+	<div class="user-container">
+		<mat-card class="static-user-card">
+			<mat-card-header class="mat-card-header-static-user">
+				<div mat-card-avatar [style.background-image]='staticUserImg' class="static-user-header-image">
+					<app-tick-sign></app-tick-sign>
+				</div>
+				<mat-card-title>{{staticUserName}}</mat-card-title>
+			</mat-card-header>
+		</mat-card>
+
+	</div>
+	<div #scroller class="messages-container custom-crollbar">
+		<app-message [allMessages]='allMessages'></app-message>
+	</div>
+	<div class="wraper-message-form">
+		<div class="message-form-container">
+			<input class="custom-input" id="message-inp" type="text" placeholder="Type your message" tabindex='-1'
+				(keydown)="handSubmit($event)" [(ngModel)]="message">
+			<button (click)="sendMessage()" class="send-message-btn flex-col">
+				<img src="assets/img/send.svg" alt="send">
+			</button>
+		</div>
+	</div>
+</div>
