@@ -1,1 +1,16 @@
-<p>not-found works!</p>
+<div class="not-found-wraper flex-row">
+	<div class="not-found-container">
+		<div class="not-found-description">
+			<h1>Something's wrong here.....</h1>
+			<p>We can't find the page you're looking for.</p>
+		</div>
+		<div class="not-found-option flex-row">
+			<button (click)="goBackTo('entry')" *ngIf="!(_afAuth.user | async)">Log in</button>
+			<button (click)="goBackTo('chat')" *ngIf="(_afAuth.user | async)">Go to chat</button>
+		</div>
+	</div>
+	<div class="not-found-img-container">
+		<img src="assets/img/not-found.svg" alt="404">
+	</div>
+
+</div>
