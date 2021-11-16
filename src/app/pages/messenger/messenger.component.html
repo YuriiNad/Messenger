@@ -1,1 +1,32 @@
-<p>messenger works!</p>
+<div class="messenger-container flex-row">
+	<div class="user-chats-container flex-col">
+		<div class="user-profile-search-container flex-col">
+			<div class="real-user-profile flex-row">
+				<div class="message-user-img flex-row">
+					<img id="user-img" src="assets/img/real-user-img.svg" alt="Avatar">
+					<app-tick-sign></app-tick-sign>
+				</div>
+				<h2>{{displayName}}</h2>
+				<button class="log-out flex-row" (click)="signOut()">
+					<img src="assets/img/log-out.svg" alt="Log out">
+				</button>
+			</div>
+			<div class="search-container">
+				<div class="search-form">
+					<input class="custom-input" id="search-inp" type="text" placeholder="Search or start new chat"
+						tabindex='-1' #newMessage>
+					<img src="assets/img/search-img.svg" alt="search">
+				</div>
+			</div>
+		</div>
+		<div class="chat-list-header">
+			<h2>Chats</h2>
+		</div>
+		<div class="static-users-wraper custom-crollbar">
+			<app-chat-list></app-chat-list>
+		</div>
+	</div>
+	<div class="chat-wraper">
+		<app-chat></app-chat>
+	</div>
+</div>
