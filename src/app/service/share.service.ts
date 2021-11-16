@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/compat/database';
 import { BehaviorSubject } from 'rxjs';
-import { ChatListComponent } from '../components/chat-list/chat-list.component';
 
 @Injectable({
 	providedIn: 'root'
@@ -9,10 +8,13 @@ import { ChatListComponent } from '../components/chat-list/chat-list.component';
 export class ShareService {
 	private staticUserName = new BehaviorSubject<string>('Rachel Green-Geller');
 	private staticUserImg = new BehaviorSubject<string>('../../../assets/img/Rachel\ Green-Geller.jpg');
+	private staticSearchUser = new BehaviorSubject<string>('');
+
+
 
 	sendUserName = this.staticUserName.asObservable();
 	sendUserImg = this.staticUserImg.asObservable();
-
+	sendSearchUser = this.staticSearchUser.asObservable();
 
 
 	constructor(
@@ -20,7 +22,9 @@ export class ShareService {
 	) {
 
 	}
-
+	setSearchUSer(searchUser: string) {
+		this.staticSearchUser.next(searchUser)
+	}
 
 	getSendToUser(sendUsers: string, img: string) {
 		this.staticUserName.next(sendUsers)

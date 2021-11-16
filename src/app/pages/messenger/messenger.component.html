@@ -13,8 +13,8 @@
 			</div>
 			<div class="search-container">
 				<div class="search-form">
-					<input class="custom-input" id="search-inp" type="text" placeholder="Search or start new chat"
-						tabindex='-1' #newMessage>
+					<input autocomplete="off" [(ngModel)]="searchUser" class="custom-input" id="search-inp" type="text"
+						placeholder="Search or start new chat" tabindex='-1'>
 					<img src="assets/img/search-img.svg" alt="search">
 				</div>
 			</div>

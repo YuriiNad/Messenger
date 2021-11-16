@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, DoCheck, Input, OnInit } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/compat/database';
 import { Observable } from 'rxjs';
 import { ChatUser } from 'src/app/models/chatUser.model';
@@ -11,8 +11,9 @@ import { ShareService } from 'src/app/service/share.service';
 	templateUrl: './user.component.html',
 	styleUrls: ['./user.component.scss']
 })
-export class UserComponent implements OnInit {
+export class UserComponent implements OnInit, DoCheck {
 	public lastMessage!: Message;
+	public searchUser = '';
 	@Input() staticUsers!: ChatUser[];
 
 	constructor(
@@ -24,12 +25,16 @@ export class UserComponent implements OnInit {
 	}
 
 	ngOnInit(): void {
+
 	}
 
 	selectChat(person: any, img: any) {
 		this._share.getSendToUser(person, img);
 	}
 
+	ngDoCheck() {
+		this._share.sendSearchUser.subscribe((searchUser: string) => this.searchUser = searchUser)
+	}
 
 
 }

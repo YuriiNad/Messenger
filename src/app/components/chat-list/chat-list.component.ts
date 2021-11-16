@@ -9,7 +9,7 @@ import { ChatService } from 'src/app/service/chat.service';
 })
 export class ChatListComponent implements OnInit {
 	public staticUsers!: ChatUser[];
-
+	public searchUser = '';
 	constructor(
 		private _chat: ChatService,
 	) {
