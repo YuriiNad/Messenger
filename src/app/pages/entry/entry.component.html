@@ -1,3 +1,9 @@
-<p>entry works!</p>
-<button (click)="signIn()" *ngIf="(_auth.afAuth.authState | async) === null">Log in with Google</button>
-<button (click)="signOut()" *ngIf="(_auth.afAuth.authState | async)">Log out</button>
+<div class="google-sign-in-wraper flex-col">
+	<div class="google-sign-in-container flex-col">
+		<h2>To start using app you should <br>
+			sign in with Google</h2>
+		<button class="google-sign-in" (click)="signIn()">
+			<img src="assets/img/btn_google_signin_dark_normal_web.png" alt="Sign in with Google">
+		</button>
+	</div>
+</div>
