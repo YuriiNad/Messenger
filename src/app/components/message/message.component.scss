@@ -1,0 +1,48 @@
+@import "src/theme/variables.scss";
+
+.message-container {
+	margin: 3px;
+	max-width: 70%;
+
+	.message-user-img, .message-data {
+		margin: 2px;
+	}
+
+	.message-data {
+		max-width: 100%;
+		// border: 2px solid red;
+		.message-content {
+			width: fit-content;
+			border-radius: 15px;
+			background-color: $static-user-bg-col-message;
+			color: #ffff;
+		};
+		span {
+			margin-top: 2px;
+			font-size: $sent-message-date;
+			color: $primary-dark-gray;
+		};
+		p {
+			padding: 5px 7px;
+		}
+	}
+
+}
+
+// Applies if user is real
+.isRealUser {
+	align-self: flex-end;
+	.message-user-img {
+		img {
+			display: none;
+		}
+	};
+	.message-content {
+		align-self: flex-end;
+		background-color: $real-user-bg-col-message !important;
+		color: #000000 !important;
+	}
+	span {
+		align-self: flex-end;
+	}	
+}

@@ -1,1 +1,16 @@
-<p>message works!</p>
+<!-- <div class="message-container" *ngFor='let message of allMessages | async'>
+	<p>{{message.message}}</p>
+	<p>{{message.timeSent}}</p>
+</div> -->
+<div class="message-container flex-row" *ngFor='let message of allMessages | async'
+	[ngClass]='{"isRealUser": message.isRealUser}'>
+	<div class="flex-row">
+		<div class="message-user-img">
+			<img id="user-img" [src]="staticUserImg" alt="Avatar">
+		</div>
+		<div class="message-data flex-col ">
+			<p class="message-content">{{message.message}}</p>
+			<span>{{message.timeSent | date:"short"}} </span>
+		</div>
+	</div>
+</div>
