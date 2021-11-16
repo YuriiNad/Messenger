@@ -16,7 +16,7 @@
 	<div class="wraper-message-form">
 		<div class="message-form-container">
 			<input class="custom-input" id="message-inp" type="text" placeholder="Type your message" tabindex='-1'
-				(keydown)="handSubmit($event)" [(ngModel)]="message">
+				autocomplete="off" (keydown)="handSubmit($event)" [(ngModel)]="message">
 			<button (click)="sendMessage()" class="send-message-btn flex-col">
 				<img src="assets/img/send.svg" alt="send">
 			</button>
