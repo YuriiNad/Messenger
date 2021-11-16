@@ -1,0 +1,13 @@
+.tick-container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	width: 20px;
+	height: 20px;
+	border: 2px solid #2caf1e;
+	border-radius: 50%;
+	position: absolute;
+	bottom: -7px;
+	right: -5px;
+}
