@@ -13,27 +13,32 @@ import { ChatService } from './chat.service';
 })
 export class AuthService {
 	authUser!: Observable<User>;
+	displayName!: string | any;
 	isLogged: boolean = false;
 
 	constructor(
 		private router: Router,
 		public _afAuth: AngularFireAuth,
 		private _db: AngularFireDatabase,
+		private _chat: ChatService,
 	) {
 
 		this._afAuth.authState
 			.subscribe(auth => {
 				if (auth !== undefined && auth !== null) {
+
+					this.addUser(auth.uid, auth.displayName, auth.email);
+					this.displayName = auth.displayName;
+
+					this.setDisplayName();
 					this.isLogged = true
 
-					this.addUser(auth.uid, auth.displayName, auth.email)
-
 					setTimeout(() => {
-						this.router.navigate(['/chat'])
+						this.router.navigate(['/chat']);
 					}, 700);
 
 				} else {
-					console.log('you have to log in');
+					console.log('You have to log in');
 				}
 			})
 	}
@@ -60,6 +65,9 @@ export class AuthService {
 		this._afAuth.signOut()
 	}
 
+	setDisplayName() {
+		localStorage.setItem('displayName', this.displayName)
+	}
 }
 
 
