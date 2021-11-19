@@ -22,6 +22,7 @@ import { MessageComponent } from './components/message/message.component';
 import { MatCardModule } from '@angular/material/card';
 import { TickSignComponent } from './tick-sign/tick-sign.component';
 import { UserFilterPipe } from './shared/users-filter.pipe';
+import { LastSentPipe } from './shared/latestSentTo.pipe';
 @NgModule({
 	declarations: [
 		AppComponent,
@@ -33,7 +34,8 @@ import { UserFilterPipe } from './shared/users-filter.pipe';
 		UserComponent,
 		MessageComponent,
 		TickSignComponent,
-		UserFilterPipe
+		UserFilterPipe,
+		LastSentPipe
 	],
 	imports: [
 		BrowserModule,

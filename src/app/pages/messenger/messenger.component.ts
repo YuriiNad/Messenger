@@ -1,4 +1,4 @@
-import { AfterContentChecked, AfterViewChecked, Component, DoCheck, OnChanges, OnInit } from '@angular/core';
+import { AfterContentChecked, Component, DoCheck, OnChanges, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AuthService } from 'src/app/service/auth.service';
 import { ChatService } from 'src/app/service/chat.service';
@@ -10,7 +10,7 @@ import { ShareService } from 'src/app/service/share.service';
 })
 export class MessengerComponent implements OnInit, AfterContentChecked, DoCheck {
 
-	public displayName!: Observable<string>;
+	public displayName!: string; // it was Observable<string>
 	public searchUser = '';
 
 	constructor(

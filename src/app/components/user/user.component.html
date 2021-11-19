@@ -1,8 +1,8 @@
-<div *ngFor='let staticUser of staticUsers | userFilter : searchUser'
+<div *ngFor='let staticUser of staticUsers  | userFilter : searchUser'
 	(click)='selectChat(staticUser.initials_u, staticUser.img_u )' class="static-user-container flex-row">
 	<div class="message-user-img offsets">
 		<div class="img-container">
-			<img id="user-img" [src]="staticUser.img_u" alt="Avatar">
+			<img id="user-img" [src]="staticUser.img_u" [alt]="staticUser.id_u">
 			<app-tick-sign></app-tick-sign>
 		</div>
 
@@ -13,6 +13,5 @@
 	</div>
 	<div class="date-container offsets">
 		<span class="date">{{staticUser.timeSent_u | async | date:'mediumDate'}}</span>
-
 	</div>
 </div>

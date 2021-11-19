@@ -1,5 +1,6 @@
 import { Component, OnInit, ElementRef, ViewChild, AfterViewChecked } from '@angular/core';
 import { Observable } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 import { ChatService } from 'src/app/service/chat.service';
 import { ShareService } from 'src/app/service/share.service';
 
@@ -24,7 +25,8 @@ export class ChatComponent implements OnInit, AfterViewChecked {
 		private _share: ShareService,
 		private _chat: ChatService,
 	) {
-		this.allMessages = this._chat.getMessages().valueChanges();
+		this.allMessages = this._chat.getMessages()
+			.valueChanges()
 	}
 
 	ngOnInit(): void {
