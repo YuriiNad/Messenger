@@ -1,9 +1,7 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
-import { Message } from '../models/message.model';
-import { ChatService } from './chat.service';
+import { Observable, throwError } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
 
 @Injectable({
 	providedIn: 'root'
@@ -16,13 +14,18 @@ export class ChuckNorrisRespService {
 		private _http: HttpClient,
 	) {
 	}
-	staticUserResponse(): Observable<string> {
+
+	staticUserResponse(): Observable<any> {
 		return this._http.get<string>(this.url)
 			.pipe(
 				map((resp: any): string => {
-					return resp.value
+					return resp.value;
+				}),
+				catchError((error): any => {
+					return throwError(`Error: ${error.message}`)
 				})
 			)
+
 	}
 
 }

@@ -4,30 +4,27 @@ import { AngularFireDatabase, AngularFireList, AngularFireObject } from '@angula
 import firebase from 'node_modules/firebase/compat';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { HttpClient } from '@angular/common/http';
-import { Observable, BehaviorSubject } from 'rxjs';
+import { Observable, BehaviorSubject, throwError } from 'rxjs';
 import { AuthService } from './auth.service';
 import { Message } from '../models/message.model';
-import { ChatUser } from '../models/chatUser.model';
 import { ShareService } from './share.service';
-import { map, take, takeLast } from 'rxjs/operators';
-import { User } from '../models/user.model';
-import { ChatListComponent } from '../components/chat-list/chat-list.component';
+import { catchError, map, take, takeLast } from 'rxjs/operators';
 import { ChuckNorrisRespService } from './chuck-norris-resp.service';
-import { Data } from '@angular/router';
+
 
 
 @Injectable({
 	providedIn: 'root'
 })
 export class ChatService {
-	private staticMessageValue!: Observable<string>
+	private staticMessageValue!: string
 
 	private user!: firebase.User
 
 	private sendToStaticUser!: string;
 	private sendToStaticUserImg!: string;
 
-	public displayName!: Observable<string>;
+	public displayName!: string; // it was Observable<string>
 
 	public chatMessages!: AngularFireList<any>
 	public chatMessage!: Message;
@@ -46,17 +43,12 @@ export class ChatService {
 			.subscribe(auth => {
 				if (auth !== undefined && auth !== null) {
 					this.user = auth;
-					// console.log('User', this.user);
-
-
 
 					this.getUser().subscribe((a: any) => {
-						// console.log('A', a);
-
 						this.displayName = a.displayName
 					})
 				}
-			})
+			});
 
 		// takes default StaticUserNAme
 		this.getStaticUserData();
@@ -64,10 +56,9 @@ export class ChatService {
 
 	getUser() {
 		const displayName = this.user.displayName;
-		// const displayName = 'TestUser';
 		const path = `/users/${displayName}`;
 
-		return this._db.object(path).valueChanges()
+		return this._db.object(path).valueChanges();
 	}
 
 	getLastMessage(person: string): Observable<string> {
@@ -102,11 +93,14 @@ export class ChatService {
 						const sentTime = messages[messages.length - 1].timeSent
 						return sentTime
 					} else {
-						const sentTime = ''
+						const sentTime = null
 						return sentTime
 					}
+				}),
+				catchError((error: any): Observable<any> => {
+					return throwError(`Error: ${error.message}`)
 				})
-			)
+			);
 	}
 
 	sendMessage(msg: string) {
@@ -126,31 +120,37 @@ export class ChatService {
 
 	sendStaticMessage() {
 		this._resp.staticUserResponse()
-			.subscribe((resp: any) => this.staticMessageValue = resp)
+			.subscribe(
+				(resp: string) => {
+					this.staticMessageValue = resp;
+				}),
 
-		// delaying of user's static message creation
-		setTimeout(() => {
-			const displayName = this.sendToStaticUser;
-			const timeSent = this.getTimeStamp()
+			// delaying of user's static message creation
+			setTimeout(() => {
+				if (this.staticMessageValue != undefined && this.staticMessageValue != null) {
+					const displayName = this.sendToStaticUser;
+					const timeSent = this.getTimeStamp();
 
-			const staticUserMessage = {
-				userName: displayName,
-				message: this.staticMessageValue,
-				isRealUser: false,
-				timeSent: timeSent,
-			}
-			this.chatMessages = this.getMessages();
-			this.chatMessages.push(staticUserMessage);
-		}, 5000);
+					const staticUserMessage = {
+						userName: displayName,
+						message: this.staticMessageValue,
+						isRealUser: false,
+						timeSent: timeSent,
+					};
+
+					this.chatMessages = this.getMessages();
+					this.chatMessages.push(staticUserMessage);
+				}
+
+			}, 5000);
 
 	}
 
 	getMessages(): AngularFireList<Message[]> {
 		const displayName = this.user.displayName;
-		// const displayName = 'TestUser';
 		const sendToStaticUser = this.sendToStaticUser;
 
-		return this._db.list(`/chats/${displayName}/${this.sendToStaticUser}`)
+		return this._db.list(`/chats/${displayName}/${this.sendToStaticUser}`);
 	}
 
 	// Gets Static User's name;
