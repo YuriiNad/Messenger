@@ -24,7 +24,7 @@ export class ChatService {
 	private sendToStaticUser!: string;
 	private sendToStaticUserImg!: string;
 
-	public displayName!: string; // it was Observable<string>
+	public displayName!: string | any; // it was Observable<string>
 
 	public chatMessages!: AngularFireList<any>
 	public chatMessage!: Message;
@@ -33,36 +33,27 @@ export class ChatService {
 
 	constructor(
 		private _share: ShareService,
-		private _auth: AuthService,
+		// private _auth: AuthService,
 		private _http: HttpClient,
 		private _afAuth: AngularFireAuth,
 		private _db: AngularFireDatabase,
 		private _resp: ChuckNorrisRespService,
 	) {
-		this._afAuth.authState
-			.subscribe(auth => {
-				if (auth !== undefined && auth !== null) {
-					this.user = auth;
-
-					this.getUser().subscribe((a: any) => {
-						this.displayName = a.displayName
-					})
-				}
-			});
+		this.getDisplayName();
 
 		// takes default StaticUserNAme
 		this.getStaticUserData();
 	}
 
-	getUser() {
-		const displayName = this.user.displayName;
-		const path = `/users/${displayName}`;
-
-		return this._db.object(path).valueChanges();
+	getDisplayName() {
+		this.displayName = localStorage.getItem('displayName');
+		return this.displayName
 	}
 
+
 	getLastMessage(person: string): Observable<string> {
-		const displayName = this.user.displayName;
+		// const displayName = this.user.displayName;
+		const displayName = this.getDisplayName()
 		// const displayName = 'TestUser';
 		return this._db
 			.list<Message>(`/chats/${displayName}/${person}`)
@@ -82,8 +73,8 @@ export class ChatService {
 	}
 
 	getLastMessageSentTime(person: string): Observable<string> {
-		const displayName = this.user.displayName;
-		// const displayName = 'TestUser';
+		const displayName = this.getDisplayName();
+
 		return this._db
 			.list<Message>(`/chats/${displayName}/${person}`)
 			.valueChanges()
@@ -104,8 +95,8 @@ export class ChatService {
 	}
 
 	sendMessage(msg: string) {
-		const displayName = this.user.displayName;
-		const timeSent = this.getTimeStamp()
+		const displayName = this.getDisplayName();
+		const timeSent = this.getTimeStamp();
 
 		const realUserMessage = {
 			userName: displayName,
@@ -147,7 +138,7 @@ export class ChatService {
 	}
 
 	getMessages(): AngularFireList<Message[]> {
-		const displayName = this.user.displayName;
+		const displayName = this.getDisplayName();
 		const sendToStaticUser = this.sendToStaticUser;
 
 		return this._db.list(`/chats/${displayName}/${this.sendToStaticUser}`);
