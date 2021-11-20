@@ -18,8 +18,6 @@ export class UserComponent implements OnInit, DoCheck {
 
 	constructor(
 		private _share: ShareService,
-		private _chat: ChatService,
-		private _db: AngularFireDatabase,
 	) {
 
 	}
@@ -30,6 +28,7 @@ export class UserComponent implements OnInit, DoCheck {
 
 	selectChat(person: any, img: any) {
 		this._share.getSendToUser(person, img);
+
 	}
 
 	ngDoCheck() {

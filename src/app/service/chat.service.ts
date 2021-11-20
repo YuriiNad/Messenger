@@ -165,5 +165,4 @@ export class ChatService {
 			now.getUTCMinutes()
 		return (date + ' ' + time);
 	}
-
 }
