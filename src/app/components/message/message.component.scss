@@ -46,3 +46,9 @@
 		align-self: flex-end;
 	}	
 }
+
+@media screen and (max-width: $screen-lg) {
+	.message-container {
+		max-width: 90%;
+	}
+}

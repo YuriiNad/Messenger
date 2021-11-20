@@ -52,3 +52,23 @@ h2 {
 		padding: 3px;
 	}
 }
+@media screen and (max-width: $screen-md) {
+	.static-user-container {
+		.date-container{
+			display: inline-block !important;
+		}
+		.static-user-content-container {
+			-webkit-line-clamp: 2 !important;
+		}
+	}
+}
+@media screen and (max-width: $screen-lg) {
+	.static-user-container {
+		.date-container{
+			display: none;
+		}
+		.static-user-content-container {
+			-webkit-line-clamp: 1 !important;
+		}
+	}
+}
