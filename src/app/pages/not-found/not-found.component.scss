@@ -1,3 +1,4 @@
+@import "src/theme/variables.scss";
 .not-found-wraper {
 	width: 100%;
 	height: 100vh;
@@ -5,7 +6,9 @@
 	align-items: center;
 
 	.not-found-container {
-		margin: 0 30px;
+		max-width: 400px;
+		margin-right: 10px;
+
 		.not-found-description {
 			h1 {
 				font-size: 35px;
@@ -19,6 +22,7 @@
 		}
 
 		.not-found-option {
+			
 			button {
 				margin-top: 20px;
 				padding: 10px 10px;
@@ -30,9 +34,50 @@
 	}
 
 	.not-found-img-container{
-		margin: 0 30px;
+		margin-left: 10px;
 		img {
-			height: 300px;
+			width: 400px;
 		}
+	}
+}
+
+@media screen and (max-width: $screen-sm) {
+	.not-found-wraper {
+		.not-found-container {
+			max-width: 270px;
+		}
+		.not-found-img-container{
+			img {
+				width: 270px;
+			}
+		}
+	}
+
+}
+@media screen and (max-width: $screen-md) {
+	.not-found-wraper {
+		display: flex;
+		flex-direction: column-reverse;
+		justify-content: center;
+		align-items: center;
+		.not-found-container,  .not-found-img-container{
+			margin: 0;
+		}
+		.not-found-container {
+			margin-top: 20px;
+		}
+
+	}
+}
+@media screen and (max-width: $screen-lg) {
+	.not-found-wraper {
+
+		.not-found-img-container{
+			margin-right: 10px;
+		}
+		.not-found-container {
+			margin-left: 10px;
+		}
+
 	}
 }
