@@ -3,9 +3,25 @@ h1,h2,h3 {
 	margin: 0;
 }
 .messenger-container {
+	position: relative;
 	height: 100vh;
 	justify-content: center;
 	align-items: flex-start;
+	border-right: 1px solid $primary-dark-gray;
+	border-left: 1px solid $primary-dark-gray;
+
+	label, #user-chat {
+		display: none;
+		position: absolute;
+		right: 0;
+		top: 0;
+		z-index: 4;
+	}
+
+	#user-chat:checked ~ .user-chats-container {
+		left: 0;
+		transition: 0.3s;
+	}
 
 	.user-chats-container, .chat-wraper {
 		min-height: 100%;
@@ -14,7 +30,9 @@ h1,h2,h3 {
 
 	.user-chats-container {
 		width: 30%;
+		max-width: 420px;
 		overflow: hidden;
+		min-width: 250px;
 		.user-profile-search-container { 
 			background-color: $primary-pale-gray;
 			border-bottom: 1px solid $primary-dark-gray;
@@ -23,14 +41,14 @@ h1,h2,h3 {
 				align-items: center;
 				justify-content: flex-start;
 				padding: 10px 5px;
-				// border: 1px solid blue;
 				h2 {
 					margin: 0 auto 0 15px;
 				}
 				.log-out {
+					margin-left: 3px;
 					padding: 4px;
 					border-radius: 10px;
-					margin-right: 8px;
+					margin-right: 3px;
 					align-items: center;
 					justify-content: center;
 					align-self:center;
@@ -70,9 +88,55 @@ h1,h2,h3 {
 	}
 
 	.chat-wraper {
+		flex-grow: 1;
 		height: 100%;
 		width: 70%;
-		// border: 2px solid orange;
 		border: 1px solid $primary-dark-gray;
+	}
+}
+
+
+@media screen and (max-width: $screen-md) {
+	.messenger-container {
+		overflow-y: auto;
+		overflow-x: hidden;
+		
+		.user-chats-container {
+			position: absolute;
+			width: 320px;
+			top: 0;
+			left: -320px;
+			z-index: 5;
+			transition: 0.3s;
+			border-right: 1px solid $primary-dark-gray;
+			
+			.user-profile-search-container {
+				.real-user-profile {
+					.log-out {
+						margin-right: 40px;
+					}
+				}
+			}
+
+		}
+
+		.chat-wraper {
+			width: 100%;
+		}
+		label {
+			display: block;
+			font-size: 20px;
+			padding-top: 7px;
+			text-align: center;
+			color: $primary-dark-gray;
+			position: fixed;
+			right: 5px;
+			top: calc(70px - 51.5px);
+			z-index: 6;
+			width: 35px;
+			height: 35px;
+			border-radius: 50%;
+			background-color: #65737e;
+		}
 	}
 }
