@@ -9,10 +9,8 @@ import { ShareService } from 'src/app/service/share.service';
 	styleUrls: ['./messenger.component.scss']
 })
 export class MessengerComponent implements OnInit, AfterContentChecked, DoCheck {
-
 	public displayName!: string; // it was Observable<string>
 	public searchUser = '';
-
 	constructor(
 		public _auth: AuthService,
 		private _chat: ChatService,
@@ -20,7 +18,6 @@ export class MessengerComponent implements OnInit, AfterContentChecked, DoCheck 
 	) {
 
 	}
-
 	ngOnInit(): void {
 	}
 
@@ -35,8 +32,6 @@ export class MessengerComponent implements OnInit, AfterContentChecked, DoCheck 
 	signOut(): void {
 		this._auth.signOut();
 	}
-
-
 
 	setSearchUSer(): void {
 		this._share.setSearchUSer(this.searchUser);

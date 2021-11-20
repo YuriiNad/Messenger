@@ -1,7 +1,3 @@
-<!-- <div class="message-container" *ngFor='let message of allMessages | async'>
-	<p>{{message.message}}</p>
-	<p>{{message.timeSent}}</p>
-</div> -->
 <div class="message-container flex-row" *ngFor='let message of allMessages | async'
 	[ngClass]='{"isRealUser": message.isRealUser}'>
 	<div class="flex-row">
