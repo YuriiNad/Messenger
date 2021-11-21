@@ -22,7 +22,7 @@ export class ChuckNorrisRespService {
 					return resp.value;
 				}),
 				catchError((error): any => {
-					return throwError(`Error: ${error.message}`)
+					return throwError(`${error.message}`)
 				})
 			)
 
