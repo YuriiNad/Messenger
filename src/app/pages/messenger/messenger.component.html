@@ -1,6 +1,6 @@
 <div class="messenger-container flex-row">
 	<label for="user-chat">&#9776;</label>
-	<input type="checkbox" id="user-chat">
+	<input #inputMenu type="checkbox" id="user-chat">
 	<div class="user-chats-container flex-col">
 		<div class="user-profile-search-container flex-col">
 			<div class="real-user-profile flex-row">
@@ -24,11 +24,11 @@
 		<div class="chat-list-header">
 			<h2>Chats</h2>
 		</div>
-		<div class="static-users-wraper custom-crollbar">
+		<div class="static-users-wraper custom-crollbar" (click)="closeMenu()">
 			<app-chat-list></app-chat-list>
 		</div>
 	</div>
-	<div class="chat-wraper">
+	<div class="chat-wraper" (click)="closeMenu()">
 		<app-chat></app-chat>
 	</div>
 </div>

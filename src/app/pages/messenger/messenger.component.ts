@@ -1,4 +1,4 @@
-import { AfterContentChecked, Component, DoCheck, OnChanges, OnInit } from '@angular/core';
+import { AfterContentChecked, AfterViewInit, Component, DoCheck, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AuthService } from 'src/app/service/auth.service';
 import { ChatService } from 'src/app/service/chat.service';
@@ -11,6 +11,7 @@ import { ShareService } from 'src/app/service/share.service';
 export class MessengerComponent implements OnInit, AfterContentChecked, DoCheck {
 	public displayName!: string; // it was Observable<string>
 	public searchUser = '';
+	@ViewChild('inputMenu') containerMenu!: ElementRef;
 	constructor(
 		public _auth: AuthService,
 		private _chat: ChatService,
@@ -19,6 +20,7 @@ export class MessengerComponent implements OnInit, AfterContentChecked, DoCheck 
 
 	}
 	ngOnInit(): void {
+
 	}
 
 	ngDoCheck() {
@@ -36,5 +38,9 @@ export class MessengerComponent implements OnInit, AfterContentChecked, DoCheck 
 	setSearchUSer(): void {
 		this._share.setSearchUSer(this.searchUser);
 	}
-
+	closeMenu(): void {
+		if (this.containerMenu.nativeElement.checked == true) {
+			this.containerMenu.nativeElement.checked = false
+		}
+	}
 }
