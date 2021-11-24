@@ -1,4 +1,6 @@
+@import "src/theme/variables.scss";
 .tick-container {
+	background-color: $primary;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
