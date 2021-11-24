@@ -45,6 +45,7 @@ h1,h2,h3 {
 					margin: 0 auto 0 15px;
 				}
 				.log-out {
+					cursor: pointer;
 					margin-left: 3px;
 					padding: 4px;
 					border-radius: 10px;
@@ -91,7 +92,8 @@ h1,h2,h3 {
 		flex-grow: 1;
 		height: 100%;
 		width: 70%;
-		border: 1px solid $primary-dark-gray;
+		border-right: 1px solid $primary-dark-gray;
+		border-left: 1px solid $primary-dark-gray;
 	}
 }
 
